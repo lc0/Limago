@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/khomenkos/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3.1/ecb6e1f8e4b0e84c4b886c2f14a1500caf309757/gson-2.3.1.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
+        <dex dex="/srv/wearabledata/android-Camera2Raw/Application/build/intermediates/pre-dexed/debug/gson-2.3.1-620b87580ba3246bd928e90f1a8b27ea00ddedd4.jar" />
+    </item>
+    <item
+        jar="/Users/khomenkos/.gradle/caches/modules-2/files-2.1/com.clarifai/clarifai-api-java/1.1.0/e577a50cca5813bd87f90bc3bb5ebcdfe1b05d8f/clarifai-api-java-1.1.0.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="e577a50cca5813bd87f90bc3bb5ebcdfe1b05d8f">
+        <dex dex="/srv/wearabledata/android-Camera2Raw/Application/build/intermediates/pre-dexed/debug/clarifai-api-java-1.1.0-f3038fc57b9f454e7e6085734a49227b1db68cb1.jar" />
+    </item>
+
+</items>
