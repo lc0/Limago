@@ -72,6 +72,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URI;
 import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -86,6 +87,7 @@ import java.util.TreeMap;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import android.content.Context;
 
 /**
  * A fragment that demonstrates use of the Camera2 API to capture RAW and JPEG photos.
@@ -501,8 +503,11 @@ public class Camera2RawFragment extends Fragment
 //                    getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM),
 //                    "RAW_" + currentDateTime + ".dng");
             File jpegFile = new File(Environment.
-                    getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM),
+//                    getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM),
+                      getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
                     "JPEG_" + currentDateTime + ".jpg");
+
+//            File jpegFile = new File(getCacheDir(), "JPEG_" + currentDateTime + ".jpg");
 
             // Look up the ImageSaverBuilder for this request and update it with the file name
             // based on the capture start time.
@@ -516,6 +521,20 @@ public class Camera2RawFragment extends Fragment
 
             if (jpegBuilder != null) jpegBuilder.setFile(jpegFile);
 //            if (rawBuilder != null) rawBuilder.setFile(rawFile);
+
+            jpegBuilder.setResponce(new AsyncResponse() {
+
+                @Override
+                public void processFinish(Object output) {
+                    Log.d(TAG, "Response From Asynchronous task:" + output);
+
+                    Intent intent = new Intent(getActivity().getBaseContext(), RecognitionActivity.class);
+                    intent.putExtra("picture_filename", (String) output);
+                    startActivity(intent);
+                }
+
+
+            });
         }
 
         @Override
@@ -535,6 +554,8 @@ public class Camera2RawFragment extends Fragment
                 handleCompletionLocked(requestId, jpegBuilder, mJpegResultQueue);
                 handleCompletionLocked(requestId, rawBuilder, mRawResultQueue);
 
+                Log.d(TAG, "something is happening here");
+
                 if (jpegBuilder != null) {
                     jpegBuilder.setResult(result);
                     sb.append("Saving JPEG as: ");
@@ -551,10 +572,8 @@ public class Camera2RawFragment extends Fragment
 
             showToast(sb.toString());
 
-            Intent intent = new Intent(getActivity().getBaseContext(), RecognitionActivity.class);
-            intent.putExtra("file", jpegBuilder.getSaveLocation());
-            startActivity(intent);
         }
+
 
         @Override
         public void onCaptureFailed(CameraCaptureSession session, CaptureRequest request,
@@ -1284,6 +1303,10 @@ public class Camera2RawFragment extends Fragment
         }
     }
 
+    public interface AsyncResponse {
+        void processFinish(Object output);
+    }
+
     /**
      * Runnable that saves an {@link Image} into the specified {@link File}, and updates
      * {@link android.provider.MediaStore} to include the resulting file.
@@ -1322,15 +1345,18 @@ public class Camera2RawFragment extends Fragment
          */
         private final RefCountedAutoCloseable<ImageReader> mReader;
 
+        public AsyncResponse mDelegate = null;
+
         private ImageSaver(Image image, File file, CaptureResult result,
                            CameraCharacteristics characteristics, Context context,
-                           RefCountedAutoCloseable<ImageReader> reader) {
+                           RefCountedAutoCloseable<ImageReader> reader, AsyncResponse delegate) {
             mImage = image;
             mFile = file;
             mCaptureResult = result;
             mCharacteristics = characteristics;
             mContext = context;
             mReader = reader;
+            mDelegate = delegate;
         }
 
         @Override
@@ -1392,6 +1418,9 @@ public class Camera2RawFragment extends Fragment
                     public void onScanCompleted(String path, Uri uri) {
                         Log.i(TAG, "Scanned " + path + ":");
                         Log.i(TAG, "-> uri=" + uri);
+
+                        mDelegate.processFinish(path);
+
                     }
                 });
             }
@@ -1409,6 +1438,7 @@ public class Camera2RawFragment extends Fragment
             private CameraCharacteristics mCharacteristics;
             private Context mContext;
             private RefCountedAutoCloseable<ImageReader> mReader;
+            private AsyncResponse mResponce;
 
             /**
              * Construct a new ImageSaverBuilder using the given {@link Context}.
@@ -1440,6 +1470,12 @@ public class Camera2RawFragment extends Fragment
                 return this;
             }
 
+            public synchronized ImageSaverBuilder setResponce(final AsyncResponse responce) {
+                if (responce == null) throw new NullPointerException();
+                mResponce = responce;
+                return this;
+            }
+
             public synchronized ImageSaverBuilder setResult(final CaptureResult result) {
                 if (result == null) throw new NullPointerException();
                 mCaptureResult = result;
@@ -1457,11 +1493,16 @@ public class Camera2RawFragment extends Fragment
                 if (!isComplete()) {
                     return null;
                 }
+
                 return new ImageSaver(mImage, mFile, mCaptureResult, mCharacteristics, mContext,
-                        mReader);
+                        mReader, mResponce);
+
             }
 
             public synchronized String getSaveLocation() {
+                Log.d(TAG, "URL path here test: " + Uri.fromFile(mFile));
+
+
                 return (mFile == null) ? "Unknown" : mFile.toString();
             }
 

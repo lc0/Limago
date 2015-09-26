@@ -11,12 +11,15 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 
 
@@ -27,6 +30,7 @@ import com.clarifai.api.RecognitionResult;
 import com.clarifai.api.Tag;
 import com.clarifai.api.exception.ClarifaiException;
 
+import static android.provider.MediaStore.Images.Media;
 
 
 /**
@@ -53,6 +57,45 @@ public class RecognitionActivity extends Activity {
         imageView = (ImageView) findViewById(R.id.image_view);
         textView = (TextView) findViewById(R.id.text_view);
 
+
+        selectButton = (Button) findViewById(R.id.select_button);
+        selectButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Send an intent to launch the media picker.
+                final Intent intent = new Intent(Intent.ACTION_PICK, Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, CODE_PICK);
+            }
+        });
+
+
+        String Filename = getIntent().getStringExtra("picture_filename");
+
+        Log.d(TAG, "image url: " + Filename);
+        Log.d(TAG, "image URI: " + Uri.fromFile(new File(Filename)));
+
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+        Bitmap bitmap = BitmapFactory.decodeFile(Filename, options);
+
+        if (bitmap != null) {
+            imageView.setImageBitmap(bitmap);
+            textView.setText("Recognizing...");
+            selectButton.setEnabled(false);
+
+            // Run recognition on a background thread since it makes a network call.
+            new AsyncTask<Bitmap, Void, RecognitionResult>() {
+                @Override protected RecognitionResult doInBackground(Bitmap... bitmaps) {
+                    return recognizeBitmap(bitmaps[0]);
+                }
+                @Override protected void onPostExecute(RecognitionResult result) {
+                    updateUIForResult(result);
+                }
+            }.execute(bitmap);
+        } else {
+            textView.setText("Unable to load selected image.");
+        }
+
     }
 
     @Override protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
@@ -60,7 +103,7 @@ public class RecognitionActivity extends Activity {
         if (requestCode == CODE_PICK && resultCode == RESULT_OK) {
             // The user picked an image. Send it to Clarifai for recognition.
             Log.d(TAG, "User picked image: " + intent.getData());
-            Log.d(TAG, "image url" + intent.getData());
+            Log.d(TAG, "image URI" + intent.getData());
 
             Bitmap bitmap = loadBitmapFromUri(intent.getData());
             if (bitmap != null) {
