@@ -24,6 +24,7 @@ import android.app.DialogFragment;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.ImageFormat;
 import android.graphics.Matrix;
@@ -549,6 +550,10 @@ public class Camera2RawFragment extends Fragment
             }
 
             showToast(sb.toString());
+
+            Intent intent = new Intent(getActivity().getBaseContext(), RecognitionActivity.class);
+            intent.putExtra("file", jpegBuilder.getSaveLocation());
+            startActivity(intent);
         }
 
         @Override
