@@ -496,9 +496,9 @@ public class Camera2RawFragment extends Fragment
         public void onCaptureStarted(CameraCaptureSession session, CaptureRequest request,
                                      long timestamp, long frameNumber) {
             String currentDateTime = generateTimestamp();
-            File rawFile = new File(Environment.
-                    getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM),
-                    "RAW_" + currentDateTime + ".dng");
+//            File rawFile = new File(Environment.
+//                    getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM),
+//                    "RAW_" + currentDateTime + ".dng");
             File jpegFile = new File(Environment.
                     getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM),
                     "JPEG_" + currentDateTime + ".jpg");
@@ -506,15 +506,15 @@ public class Camera2RawFragment extends Fragment
             // Look up the ImageSaverBuilder for this request and update it with the file name
             // based on the capture start time.
             ImageSaver.ImageSaverBuilder jpegBuilder;
-            ImageSaver.ImageSaverBuilder rawBuilder;
+//            ImageSaver.ImageSaverBuilder rawBuilder;
             int requestId = (int) request.getTag();
             synchronized (mCameraStateLock) {
                 jpegBuilder = mJpegResultQueue.get(requestId);
-                rawBuilder = mRawResultQueue.get(requestId);
+//                rawBuilder = mRawResultQueue.get(requestId);
             }
 
             if (jpegBuilder != null) jpegBuilder.setFile(jpegFile);
-            if (rawBuilder != null) rawBuilder.setFile(rawFile);
+//            if (rawBuilder != null) rawBuilder.setFile(rawFile);
         }
 
         @Override
@@ -539,12 +539,12 @@ public class Camera2RawFragment extends Fragment
                     sb.append("Saving JPEG as: ");
                     sb.append(jpegBuilder.getSaveLocation());
                 }
-                if (rawBuilder != null) {
-                    rawBuilder.setResult(result);
-                    if (jpegBuilder != null) sb.append(", ");
-                    sb.append("Saving RAW as: ");
-                    sb.append(rawBuilder.getSaveLocation());
-                }
+//                if (rawBuilder != null) {
+//                    rawBuilder.setResult(result);
+//                    if (jpegBuilder != null) sb.append(", ");
+//                    sb.append("Saving RAW as: ");
+//                    sb.append(rawBuilder.getSaveLocation());
+//                }
                 finishedCaptureLocked();
             }
 
