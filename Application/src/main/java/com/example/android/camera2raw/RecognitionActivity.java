@@ -269,9 +269,11 @@ public class RecognitionActivity extends Activity {
         }
     }
 
-    private String handleWords(String definition) {
+    private String handleWords( String definition) {
         //handle value
         Log.d("more words", "words have arrived: " + definition);
+
+        textView.append(definition + "\n\n");
 
         return definition;
     }
