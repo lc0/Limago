@@ -2,18 +2,11 @@
 <items version="2" >
 
     <item
-        jar="/Users/khomenkos/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3.1/ecb6e1f8e4b0e84c4b886c2f14a1500caf309757/gson-2.3.1.jar"
+        jar="/Users/khomenkos/.gradle/caches/modules-2/files-2.1/com.github.lc0/clarifai-java/96675c4556432323b/8cb690272b65c6de8e45bc7bc6d0461c8ec01f59/clarifai-java-96675c4556432323b.jar"
         jumboMode="false"
         revision="23.0.0"
-        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
-        <dex dex="/srv/wearabledata/android-Camera2Raw/Application/build/intermediates/pre-dexed/debug/gson-2.3.1-620b87580ba3246bd928e90f1a8b27ea00ddedd4.jar" />
-    </item>
-    <item
-        jar="/Users/khomenkos/.gradle/caches/modules-2/files-2.1/com.clarifai/clarifai-api-java/1.1.0/e577a50cca5813bd87f90bc3bb5ebcdfe1b05d8f/clarifai-api-java-1.1.0.jar"
-        jumboMode="false"
-        revision="23.0.0"
-        sha1="e577a50cca5813bd87f90bc3bb5ebcdfe1b05d8f">
-        <dex dex="/srv/wearabledata/android-Camera2Raw/Application/build/intermediates/pre-dexed/debug/clarifai-api-java-1.1.0-f3038fc57b9f454e7e6085734a49227b1db68cb1.jar" />
+        sha1="8cb690272b65c6de8e45bc7bc6d0461c8ec01f59">
+        <dex dex="/srv/wearabledata/android-Camera2Raw/Application/build/intermediates/pre-dexed/debug/clarifai-java-96675c4556432323b-5ce8509ab6af3ddd9c88e78995e02b3897d6d812.jar" />
     </item>
 
 </items>

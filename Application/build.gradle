@@ -13,6 +13,7 @@ apply plugin: 'com.android.application'
 
 repositories {
     jcenter()
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
@@ -20,7 +21,8 @@ dependencies {
     compile "com.android.support:support-v13:23.0.0"
     compile "com.android.support:cardview-v7:23.0.0"
     compile 'com.android.support:appcompat-v7:23.0.0'
-    compile 'com.clarifai:clarifai-api-java:1.1.0'
+//    compile 'com.clarifai:clarifai-api-java:1.1.0'
+    compile 'com.github.lc0:clarifai-java:96675c4556432323b'
 }
 
 // The sample build uses multiple directories to

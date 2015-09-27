@@ -58,6 +58,8 @@ public class RecognitionActivity extends Activity {
     private ImageView imageView;
     private TextView textView;
 
+    public String targetLanguage = "de";
+
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recognition);
@@ -170,7 +172,7 @@ public class RecognitionActivity extends Activity {
             byte[] jpeg = out.toByteArray();
 
             // Send the JPEG to Clarifai and return the result.
-            return client.recognize(new RecognitionRequest(jpeg)).get(0);
+            return client.recognize(new RecognitionRequest(jpeg).setLanguage(targetLanguage)).get(0);
         } catch (ClarifaiException e) {
             Log.e(TAG, "Clarifai error", e);
             return null;
@@ -190,7 +192,7 @@ public class RecognitionActivity extends Activity {
 
                     Log.d(TAG, "Getting some words" +
                             // new WordsAPI("P2bhznkCXpmshORgqwX2U1nyulfep1Cg7tdjsnVpkrAUyFsokf").execute(tag.getName()));
-                            new WikipediaAPI("en").execute(tag.getName()));
+                            new WikipediaAPI(targetLanguage).execute(tag.getName()));
 
                 }
                 textView.setText("Tags:\n" + b);
