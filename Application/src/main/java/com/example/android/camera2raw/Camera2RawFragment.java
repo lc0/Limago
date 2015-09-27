@@ -570,7 +570,7 @@ public class Camera2RawFragment extends Fragment
                 finishedCaptureLocked();
             }
 
-            showToast(sb.toString());
+//            showToast(sb.toString());
 
         }
 

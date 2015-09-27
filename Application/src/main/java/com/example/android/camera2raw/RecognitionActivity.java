@@ -172,12 +172,21 @@ public class RecognitionActivity extends Activity {
 
     /** Updates the UI by displaying tags for the given result. */
     private void updateUIForResult(RecognitionResult result) {
+
+        WordsAPI api = new WordsAPI("P2bhznkCXpmshORgqwX2U1nyulfep1Cg7tdjsnVpkrAUyFsokf");
+
         if (result != null) {
             if (result.getStatusCode() == RecognitionResult.StatusCode.OK) {
                 // Display the list of tags in the UI.
                 StringBuilder b = new StringBuilder();
                 for (Tag tag : result.getTags()) {
                     b.append(b.length() > 0 ? ", " : "").append(tag.getName());
+
+                    try {
+                        Log.d(TAG, "Getting some words" + api.getDefinition(tag.getName()));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
                 textView.setText("Tags:\n" + b);
             } else {
