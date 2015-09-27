@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -188,7 +189,8 @@ public class RecognitionActivity extends Activity {
 
 
                     Log.d(TAG, "Getting some words" +
-                            new WordsAPI("P2bhznkCXpmshORgqwX2U1nyulfep1Cg7tdjsnVpkrAUyFsokf").execute(tag.getName()));
+                            // new WordsAPI("P2bhznkCXpmshORgqwX2U1nyulfep1Cg7tdjsnVpkrAUyFsokf").execute(tag.getName()));
+                            new WikipediaAPI("en").execute(tag.getName()));
 
                 }
                 textView.setText("Tags:\n" + b);
@@ -213,6 +215,7 @@ public class RecognitionActivity extends Activity {
 
         private HttpsURLConnection createConnection(String word, String method) {
             String query = baseUrl + word + "/" + method;
+
             URL url = null;
             try {
                 url = new URL(query);
@@ -256,6 +259,76 @@ public class RecognitionActivity extends Activity {
                     return getDefinition(word);
                 } catch (IOException e) {
                     Log.d("WordsAPI", "Word not found" + word);
+//                e.printStackTrace();
+                }
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            handleWords(result);
+        }
+    }
+
+    public class WikipediaAPI extends AsyncTask<String, Void, String>{
+
+        private String mainUrl = "wikipedia.org/w/";
+        private String locale;
+
+        public WikipediaAPI(String locale) {
+            this.locale = locale;
+        }
+
+        private HttpsURLConnection createConnection(String word) {
+            String query = "https://" + locale + "." + mainUrl + "api.php?action=query&prop=extracts&titles=" + word + "&format=json&exintro=1";
+            Log.d(TAG, "wiki here" + query);
+
+
+            URL url = null;
+            try {
+                url = new URL(query);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            HttpsURLConnection conn = null;
+            try {
+                conn = (HttpsURLConnection) url.openConnection();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return conn;
+        }
+
+        public String getDefinition(String word) throws IOException {
+            HttpsURLConnection conn = createConnection(word);
+
+            InputStreamReader in = new InputStreamReader((InputStream) conn.getContent());
+            BufferedReader buff = new BufferedReader(in);
+            StringBuilder builder = new StringBuilder();
+            String line;
+            do {
+                line = buff.readLine();
+                if (line != null) {
+                    builder.append(line + "\n");
+                }
+            } while (line != null);
+
+//            return builder.toString();
+            return Html.fromHtml(builder.toString()).toString();
+        }
+
+
+        @Override
+        protected String doInBackground(String... words) {
+
+            for (String word : words) {
+                try {
+                    return getDefinition(word);
+                } catch (IOException e) {
+                    Log.d("WikipediaAPI", "Word not found" + word);
 //                e.printStackTrace();
                 }
             }

@@ -6,12 +6,12 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="wiki here" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a4baafae-7904-481b-b1cf-328ccb7aa087" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/src/main/java/com/example/android/camera2raw/RecognitionActivity.java" afterPath="$PROJECT_DIR$/Application/src/main/java/com/example/android/camera2raw/RecognitionActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/src/main/res/layout/activity_recognition.xml" afterPath="$PROJECT_DIR$/Application/src/main/res/layout/activity_recognition.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="android-Camera2Raw.iws" />
@@ -66,17 +66,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RecognitionActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RecognitionActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Application/src/main/java/com/example/android/camera2raw/RecognitionActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.777778">
-              <caret line="275" column="42" selection-start-line="275" selection-start-column="42" selection-end-line="275" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.46458334">
+              <caret line="319" column="19" selection-start-line="319" selection-start-column="19" selection-end-line="319" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#8400#8401#0" expanded="true" />
-                <element signature="e#8438#8439#0" expanded="true" />
-                <element signature="e#10241#10242#0" expanded="true" />
-                <element signature="e#10284#10285#0" expanded="true" />
+                <element signature="e#8505#8506#0" expanded="true" />
+                <element signature="e#8543#8544#0" expanded="true" />
+                <element signature="e#10347#10348#0" expanded="true" />
+                <element signature="e#10390#10391#0" expanded="true" />
+                <element signature="e#10599#10600#0" expanded="true" />
+                <element signature="e#10643#10644#0" expanded="true" />
+                <element signature="e#12497#12498#0" expanded="true" />
+                <element signature="e#12540#12541#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -92,13 +96,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_recognition.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="activity_recognition.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/src/main/res/layout/activity_recognition.xml">
           <provider editor-type-id="android-designer">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6816038">
+            <state vertical-scroll-proportion="-5.160714">
               <caret line="26" column="47" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="47" />
               <folding>
                 <element signature="e#587#607#0" expanded="true" />
@@ -1553,8 +1557,8 @@
         <option value="$PROJECT_DIR$/Application/src/main/java/com/example/android/camera2raw/WordAPI.java" />
         <option value="$PROJECT_DIR$/Application/src/main/java/com/example/android/camera2raw/Camera2RawFragment.java" />
         <option value="$PROJECT_DIR$/Application/src/main/java/com/example/android/camera2raw/WordsAPI.java" />
-        <option value="$PROJECT_DIR$/Application/src/main/java/com/example/android/camera2raw/RecognitionActivity.java" />
         <option value="$PROJECT_DIR$/Application/src/main/res/layout/activity_recognition.xml" />
+        <option value="$PROJECT_DIR$/Application/src/main/java/com/example/android/camera2raw/RecognitionActivity.java" />
       </list>
     </option>
   </component>
@@ -1923,7 +1927,7 @@
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298153" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3298153" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3298153" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1974,10 +1978,14 @@
           <caret line="55" column="52" selection-start-line="55" selection-start-column="32" selection-end-line="55" selection-end-column="52" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#8400#8401#0" expanded="true" />
-            <element signature="e#8438#8439#0" expanded="true" />
-            <element signature="e#10241#10242#0" expanded="true" />
-            <element signature="e#10284#10285#0" expanded="true" />
+            <element signature="e#8505#8506#0" expanded="true" />
+            <element signature="e#8543#8544#0" expanded="true" />
+            <element signature="e#10347#10348#0" expanded="true" />
+            <element signature="e#10390#10391#0" expanded="true" />
+            <element signature="e#10599#10600#0" expanded="true" />
+            <element signature="e#10643#10644#0" expanded="true" />
+            <element signature="e#12497#12498#0" expanded="true" />
+            <element signature="e#12540#12541#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2073,10 +2081,14 @@
           <caret line="78" column="19" selection-start-line="78" selection-start-column="19" selection-end-line="78" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#8400#8401#0" expanded="true" />
-            <element signature="e#8438#8439#0" expanded="true" />
-            <element signature="e#10241#10242#0" expanded="true" />
-            <element signature="e#10284#10285#0" expanded="true" />
+            <element signature="e#8505#8506#0" expanded="true" />
+            <element signature="e#8543#8544#0" expanded="true" />
+            <element signature="e#10347#10348#0" expanded="true" />
+            <element signature="e#10390#10391#0" expanded="true" />
+            <element signature="e#10599#10600#0" expanded="true" />
+            <element signature="e#10643#10644#0" expanded="true" />
+            <element signature="e#12497#12498#0" expanded="true" />
+            <element signature="e#12540#12541#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2239,30 +2251,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/src/main/java/com/example/android/camera2raw/RecognitionActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.777778">
-          <caret line="275" column="42" selection-start-line="275" selection-start-column="42" selection-end-line="275" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#8400#8401#0" expanded="true" />
-            <element signature="e#8438#8439#0" expanded="true" />
-            <element signature="e#10241#10242#0" expanded="true" />
-            <element signature="e#10284#10285#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/src/main/res/layout/activity_recognition.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6816038">
+        <state vertical-scroll-proportion="-5.160714">
           <caret line="26" column="47" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="47" />
           <folding>
             <element signature="e#587#607#0" expanded="true" />
             <element signature="e#1323#1345#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/src/main/java/com/example/android/camera2raw/RecognitionActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.46458334">
+          <caret line="319" column="19" selection-start-line="319" selection-start-column="19" selection-end-line="319" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#8505#8506#0" expanded="true" />
+            <element signature="e#8543#8544#0" expanded="true" />
+            <element signature="e#10347#10348#0" expanded="true" />
+            <element signature="e#10390#10391#0" expanded="true" />
+            <element signature="e#10599#10600#0" expanded="true" />
+            <element signature="e#10643#10644#0" expanded="true" />
+            <element signature="e#12497#12498#0" expanded="true" />
+            <element signature="e#12540#12541#0" expanded="true" />
           </folding>
         </state>
       </provider>
