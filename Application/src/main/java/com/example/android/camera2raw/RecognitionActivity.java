@@ -35,6 +35,10 @@ import com.clarifai.api.RecognitionResult;
 import com.clarifai.api.Tag;
 import com.clarifai.api.exception.ClarifaiException;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import javax.net.ssl.HttpsURLConnection;
 
 import static android.provider.MediaStore.Images.Media;
@@ -319,7 +323,25 @@ public class RecognitionActivity extends Activity {
             } while (line != null);
 
 //            return builder.toString();
-            return Html.fromHtml(builder.toString()).toString();
+
+            String definitions = builder.toString();
+
+            JSONObject jObject = null;
+            try {
+                jObject = new JSONObject(definitions);
+                JSONObject pages = jObject.getJSONObject("query").getJSONObject("pages");
+                String pageId = pages.keys().next();
+
+                String definitionExtract = pages.getJSONObject(pageId).getString("extract");
+
+                return Html.fromHtml(definitionExtract).toString();
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return null;
         }
 
 
