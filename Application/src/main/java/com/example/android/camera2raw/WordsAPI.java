@@ -3,12 +3,14 @@ package com.example.android.camera2raw;
 /**
  * Created by khomenkos on 27/09/15.
  */
+import android.os.AsyncTask;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import javax.net.ssl.*;
 import java.io.*;
 
-public class WordsAPI {
+public class WordsAPI extends AsyncTask<String, Void, String>{
 
     private static String baseUrl = "https://wordsapiv1.p.mashape.com/words/";
     private String key;
@@ -18,7 +20,7 @@ public class WordsAPI {
     }
 
     private HttpsURLConnection createConnection(String word, String method) {
-        String query = "https://wordsapiv1.p.mashape.com/words/" + word + "/" + method;
+        String query = baseUrl + word + "/" + method;
         URL url = null;
         try {
             url = new URL(query);
@@ -37,7 +39,7 @@ public class WordsAPI {
     }
 
     public String getDefinition(String word) throws IOException {
-        HttpsURLConnection conn = createConnection(word, "also");
+        HttpsURLConnection conn = createConnection(word, "definition");
 
         InputStreamReader in = new InputStreamReader((InputStream) conn.getContent());
         BufferedReader buff = new BufferedReader(in);
@@ -51,6 +53,21 @@ public class WordsAPI {
         } while (line != null);
 
         return builder.toString();
+    }
+
+
+    @Override
+    protected String doInBackground(String... words) {
+
+        for (String word : words) {
+            try {
+                return getDefinition(word);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return null;
     }
 }
 
