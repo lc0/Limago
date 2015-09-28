@@ -16,6 +16,18 @@ repositories {
     maven { url "https://jitpack.io" }
 }
 
+
+def CLARIFAI_APP_ID = '"' + ClarifaiAppId + '"' ?: '"Define Clarifai App Id"';
+def CLARIFAI_APP_SECRET = '"' + ClarifaiAppSecret + '"' ?: '"Define Clarifai App Secret"';
+def WORDS_API_KEY = '"' + WordsAPIKey + '"' ?: '"Define Clarifai App Secret"';
+
+
+android.buildTypes.each { type ->;
+    type.buildConfigField 'String', 'CLARIFAI_APP_ID', CLARIFAI_APP_ID
+    type.buildConfigField 'String', 'CLARIFAI_APP_SECRET', CLARIFAI_APP_SECRET
+    type.buildConfigField 'String', 'WORDS_API_KEY', WORDS_API_KEY
+}
+
 dependencies {
     compile "com.android.support:support-v4:23.0.0"
     compile "com.android.support:support-v13:23.0.0"

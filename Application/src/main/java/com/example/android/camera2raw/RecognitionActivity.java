@@ -52,8 +52,8 @@ public class RecognitionActivity extends Activity {
 
     // IMPORTANT NOTE: you should replace these keys with your own App ID and secret.
     // These can be obtained at https://developer.clarifai.com/applications
-    private static final String APP_ID = "5aNsZ9T6wUaNl_wPa1BzYQzbxhJtY2ZZR2gDyFpr";
-    private static final String APP_SECRET = "B-tZvJOIAQNXYoqkyBmV4vrXGG5_YRAaHA7s4smo";
+    private static final String APP_ID = BuildConfig.CLARIFAI_APP_ID;
+    private static final String APP_SECRET = BuildConfig.CLARIFAI_APP_SECRET;
 
     private static final int CODE_PICK = 1;
 
@@ -195,7 +195,7 @@ public class RecognitionActivity extends Activity {
 
 
                     Log.d(TAG, "Getting some words" +
-                            // new WordsAPI("P2bhznkCXpmshORgqwX2U1nyulfep1Cg7tdjsnVpkrAUyFsokf").execute(tag.getName()));
+//                             new WordsAPI(BuildConfig.WORDS_API_KEY).execute(tag.getName()));
                             new WikipediaAPI(targetLanguage).execute(tag.getName()));
 
                 }
@@ -370,7 +370,8 @@ public class RecognitionActivity extends Activity {
         //handle value
         Log.d("more words", "words have arrived: " + definition);
 
-        textView.append(definition + "\n\n");
+        if (definition != null && definition.length() > 1)
+            textView.append(definition + "\n\n *** \n\n");
 
         return definition;
     }
